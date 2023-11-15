@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as config from '$lib/config'
+	import * as config from '$lib/config';
 </script>
 
 <!-- Footer -->
-<footer>
+<footer class="flex items-center justify-center">
 	<p>{config.title} &copy {new Date().getFullYear()}</p>
 </footer>
