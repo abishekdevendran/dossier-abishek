@@ -1,8 +1,8 @@
 import { getPost } from '$lib/sanity';
 import { error } from '@sveltejs/kit';
 
-export const load = async ({ params, setHeaders }) => {
-	const post = await getPost(params.slug);
+export const load = async ({ params, setHeaders, fetch }) => {
+	const post = await getPost(params.slug, fetch);
 	setHeaders({
 		'cache-control': 'max-age=86400, s-maxage=86400, stale-while-revalidate=86400',
 		age: '86400',

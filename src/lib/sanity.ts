@@ -12,7 +12,9 @@ const baseUrl = `https://${PUBLIC_SANITY_PROJECT_ID}.apicdn.sanity.io/${
 }/data/query/${PUBLIC_SANITY_DATASET}`;
 
 
-export async function getPosts(): Promise<Post[]> {
+export async function getPosts(
+	fetch: (input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>
+): Promise<Post[]> {
 	const resp = await fetch(baseUrl, {
 		method: 'POST',
 		headers: {
@@ -29,7 +31,10 @@ export async function getPosts(): Promise<Post[]> {
 	return data.result;
 }
 
-export async function getPost(slug: string): Promise<Post> {
+export async function getPost(
+	slug: string,
+	fetch: (input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>
+): Promise<Post> {
 	const resp = await fetch(baseUrl, {
 		method: 'POST',
 		headers: {
