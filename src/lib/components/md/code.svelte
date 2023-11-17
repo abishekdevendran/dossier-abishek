@@ -50,12 +50,12 @@
 	</div>
 {:then languageImport}
 	<div
-		class="w-full flex items-center justify-between text-center capitalize rounded-t-xl p-2 dark:bg-primary bg-secondary mt-4"
+		class="w-full flex items-center justify-between text-center capitalize rounded-t-xl p-2 dark:bg-primary bg-secondary mt-4 pl-4"
 	>
 		<p>
 			{language()}
 		</p>
-		<Button class="cursor-pointer" on:click={copyToClipboard} variant="ghost" size="icon">
+		<Button class="cursor-pointer rounded-lg p-2" on:click={copyToClipboard} variant="ghost" size="icon">
 			<Copy />
 		</Button>
 	</div>

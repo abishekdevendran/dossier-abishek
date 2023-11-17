@@ -7,13 +7,16 @@
 	import HeadingComponent from '$lib/components/md/heading.svelte';
 	import formatDate from '$lib/formatDate.js';
 	import calcArticleTime from '$lib/calcArticleTime.js';
+	import Badge from '$lib/components/ui/badge/badge.svelte';
+	import Toc from '$lib/components/toc.svelte';
+	import { tocCrawler } from '@skeletonlabs/skeleton';
 </script>
 
 <svelte:head>
 	<title>Page {data.post.title} | {config.title}</title>
 </svelte:head>
 <div class="w-full flex items-center mt-2">
-	<a href="/" class="text-blue-500 hover:underline">Home</a>
+	<a href="/" class="text-primary hover:underline">Home</a>
 	<span class="mx-2">/</span>
 	<span>{data.post.title}</span>
 </div>
@@ -36,12 +39,15 @@
 		</h6>
 		<div class="flex items-center justify-center gap-2">
 			{#each data.post.categories as category}
-				<h6>{category.title}</h6>
+				<Badge variant="outline">{category.title}</Badge>
 			{/each}
 		</div>
 	</div>
-	<SvelteMarkdown
-		source={data.post.body}
-		renderers={{ image: ImageComponent, code: CodeComponent, heading: HeadingComponent }}
-	/>
+	<Toc/>
+	<div class="w-full markdown-holder" use:tocCrawler={{ mode: 'generate' }}>
+		<SvelteMarkdown
+			source={data.post.body}
+			renderers={{ image: ImageComponent, code: CodeComponent, heading: HeadingComponent }}
+		/>
+	</div>
 </div>
