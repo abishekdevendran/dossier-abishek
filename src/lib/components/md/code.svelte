@@ -3,6 +3,8 @@
 	import { Copy, Loader2 } from 'lucide-svelte';
 	import Highlight, { LineNumbers } from 'svelte-highlight';
 	import atomOneDark from 'svelte-highlight/styles/atom-one-dark';
+	import atomOneLight from 'svelte-highlight/styles/atom-one-light';
+	import { mode } from 'mode-watcher';
 	import { toast } from 'svelte-sonner';
 	export let lang: string = '';
 	export let text: string = '';
@@ -31,10 +33,16 @@
 		navigator.clipboard.writeText(text);
 		toast.success('Copied to clipboard');
 	};
+	let htmlImport: string = '';
+	$: if ($mode === 'dark') {
+		htmlImport = atomOneDark;
+	} else {
+		htmlImport = atomOneLight;
+	}
 </script>
 
 <svelte:head>
-	{@html atomOneDark}
+	{@html htmlImport}
 </svelte:head>
 {#await languageImportFunc()}
 	<div class="w-full flex items-center justify-center">
@@ -42,7 +50,7 @@
 	</div>
 {:then languageImport}
 	<div
-		class="w-full flex items-center justify-between text-center capitalize rounded-t-xl p-2 bg-primary mt-4"
+		class="w-full flex items-center justify-between text-center capitalize rounded-t-xl p-2 dark:bg-primary bg-secondary mt-4"
 	>
 		<p>
 			{language()}

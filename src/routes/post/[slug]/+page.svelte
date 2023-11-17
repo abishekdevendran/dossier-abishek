@@ -17,6 +17,7 @@
 			{data.post.title}
 		</h1>
 		<h6>Published: {formatDate(data.post._createdAt)}</h6>
+		<h6 class="text-xs">Updated: {formatDate(data.post._updatedAt)}</h6>
 	</div>
 	<SvelteMarkdown source={data.post.body} renderers={{ image: ImageComponent, code:CodeComponent }} />
 </div>
