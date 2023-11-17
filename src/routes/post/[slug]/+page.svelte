@@ -11,7 +11,7 @@
 	<title>Page {data.post.title} | {config.title}</title>
 </svelte:head>
 <div class="max-w-2xl mx-auto">
-	{data.post.body}
+	<!-- {data.post.body} -->
 	<div class="w-full flex items-center justify-center py-6 flex-col gap-4" id="title">
 		<h1 class="text-center before:content-none">
 			{data.post.title}
