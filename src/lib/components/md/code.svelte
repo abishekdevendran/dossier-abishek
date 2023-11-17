@@ -37,7 +37,9 @@
 	{@html atomOneDark}
 </svelte:head>
 {#await languageImportFunc()}
-	<Loader2 class="animate-spin" />
+	<div class="w-full flex items-center justify-center">
+		<Loader2 class="animate-spin" />
+	</div>
 {:then languageImport}
 	<div
 		class="w-full flex items-center justify-between text-center capitalize rounded-t-xl p-2 bg-primary mt-4"
