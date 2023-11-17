@@ -11,7 +11,6 @@ const baseUrl = `https://${PUBLIC_SANITY_PROJECT_ID}.apicdn.sanity.io/${
 	'v' + new Date().toISOString().split('T')[0]
 }/data/query/${PUBLIC_SANITY_DATASET}`;
 
-
 export async function getPosts(
 	fetch: (input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>
 ): Promise<Post[]> {
@@ -41,23 +40,42 @@ export async function getPost(
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			query: `*[_type == "post" && slug.current == $slug][0]`,
+			query: `*[_type == "post" && slug.current == $slug][0]{..., "author": author->{name, image}, categories[]->{title, description}}`,
 			params: {
 				slug
 			}
 		})
 	});
 	const data = await resp.json();
+	// console.log(data.result.categories);
 	return data.result;
+}
+interface RootObject {
+	name: string;
+	image: Image;
+}
+
+interface Image {
+	_type: string;
+	asset: Asset;
+}
+
+interface Asset {
+	_ref: string;
+	_type: string;
 }
 
 export interface Post {
 	_type: 'post';
 	_createdAt: string;
-	_updatedAt: string;
 	title?: string;
 	slug: Slug;
 	excerpt?: string;
 	mainImage?: ImageAsset;
-	body: unknown[];
+	body: string;
+	author: RootObject;
+	categories: {
+		title: string;
+		description: string;
+	}[];
 }

@@ -56,10 +56,10 @@
 		@apply bg-background text-foreground;
 	}
 	h1 {
-		@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl before:content-['#_'];
+		@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
 	}
 	h2 {
-		@apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 before:content-['#_'];
+		@apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
 	}
 	h3 {
 		@apply scroll-m-20 text-2xl font-semibold tracking-tight;
@@ -75,5 +75,25 @@
 	}
 	blockquote {
 		@apply mt-6 border-l-2 pl-6 italic;
+	}
+	/* width */
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		@apply bg-secondary;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		@apply bg-primary;
+		border-radius: 5px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-primary/80;
 	}
 }
