@@ -10,6 +10,7 @@
 	import Badge from '$lib/components/ui/badge/badge.svelte';
 	import Toc from '$lib/components/toc.svelte';
 	import { tocCrawler } from '@skeletonlabs/skeleton';
+	import { Heart } from 'lucide-svelte';
 </script>
 
 <svelte:head>
@@ -43,11 +44,17 @@
 			{/each}
 		</div>
 	</div>
-	<Toc/>
-	<div class="w-full markdown-holder" use:tocCrawler={{ mode: 'generate' }}>
+	<Toc />
+	<div class="w-full markdown-holder" use:tocCrawler={{ mode: 'generate', prefix: 'toc' }}>
 		<SvelteMarkdown
 			source={data.post.body}
 			renderers={{ image: ImageComponent, code: CodeComponent, heading: HeadingComponent }}
 		/>
 	</div>
+	<button class="fixed left-2 top-1/2 w-16 h-16 rounded-full bg-secondary text-primary z-50">
+		<div class="w-full h-full relative flex items-center justify-center">
+			<Heart size="55" class="opacity-30 absolute pt-1" />
+			{data.post.likes}
+		</div>
+	</button>
 </div>

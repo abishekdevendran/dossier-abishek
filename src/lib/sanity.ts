@@ -73,6 +73,7 @@ export interface Post {
 	excerpt?: string;
 	mainImage?: ImageAsset;
 	body: string;
+	likes: number;
 	author: RootObject;
 	categories: {
 		title: string;

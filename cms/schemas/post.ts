@@ -49,6 +49,17 @@ export default defineType({
       title: 'Body',
       type: 'markdown',
     }),
+    defineField({
+      name: 'likes',
+      title: 'Likes',
+      type: 'number',
+    }),
+    defineField({
+      name: 'comments',
+      title: 'Comments',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'comment'}}],
+    }),
   ],
 
   preview: {
