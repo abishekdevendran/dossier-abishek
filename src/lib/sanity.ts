@@ -47,9 +47,9 @@ export async function getPost(
 		})
 	});
 	const data = await resp.json();
-	// console.log(data.result.categories);
 	return data.result;
 }
+
 interface RootObject {
 	name: string;
 	image: Image;
@@ -68,6 +68,7 @@ interface Asset {
 export interface Post {
 	_type: 'post';
 	_createdAt: string;
+	_id: string;
 	title?: string;
 	slug: Slug;
 	excerpt?: string;

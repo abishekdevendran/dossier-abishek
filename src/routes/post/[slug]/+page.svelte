@@ -11,6 +11,7 @@
 	import Toc from '$lib/components/toc.svelte';
 	import { tocCrawler } from '@skeletonlabs/skeleton';
 	import { Heart } from 'lucide-svelte';
+	import { enhance } from '$app/forms';
 </script>
 
 <svelte:head>
@@ -51,10 +52,13 @@
 			renderers={{ image: ImageComponent, code: CodeComponent, heading: HeadingComponent }}
 		/>
 	</div>
-	<button class="fixed left-2 top-1/2 w-16 h-16 rounded-full bg-secondary text-primary z-50">
-		<div class="w-full h-full relative flex items-center justify-center">
-			<Heart size="55" class="opacity-30 absolute pt-1" />
-			{data.post.likes}
-		</div>
-	</button>
+	<form class="fixed left-2 top-1/2 z-50 w-16 h-16" use:enhance method="POST" action="?/addLike">
+		<input type="hidden" name="id" value={data.post._id} />
+		<button class="w-full h-full rounded-full bg-secondary text-primary">
+			<div class="w-full h-full relative flex items-center justify-center">
+				<Heart size="55" class="opacity-30 absolute pt-1" />
+				{data.post.likes}
+			</div>
+		</button>
+	</form>
 </div>
